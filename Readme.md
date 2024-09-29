@@ -2,6 +2,8 @@
 A base project that allows you to create code mods for smo with exlaunch using clang.
 This also includes a custom actor factory to allow adding custom actors.
 
+The way mallow sets ftp up has a bug. To fix this run cmake to configure your project again after the first build
+
 ## Original Marshmallow Readme
 A clang based version of [exlaunch](https://github.com/shadowninja108/exlaunch/) with some useful built-in tools.
 Supporting clang directly allows better integration with IDEs via clangd and various other clang tools.
