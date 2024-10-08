@@ -2,9 +2,10 @@
 A base project that allows you to create code mods for smo with exlaunch using clang.
 This also includes a custom actor factory to allow adding custom actors.
 
-The way mallow sets ftp up has a bug. To fix this run cmake to configure your project again after the first build
+This project uses [Sanae](https://github.com/Sanae6)'s [marsmallow](https://github.com/odyssey-modding/marshmallow) as a base. Marsmallow allows you to make switch mods using clang.
 
 ## Original Marshmallow Readme
+------------------------------
 A clang based version of [exlaunch](https://github.com/shadowninja108/exlaunch/) with some useful built-in tools.
 Supporting clang directly allows better integration with IDEs via clangd and various other clang tools.
 This project does not depend on the devkitPro switch toolchain.
@@ -66,3 +67,4 @@ You will need Node.js if you want to use logserver.js, otherwise you should make
   - [Atmosphère](https://github.com/Atmosphere-NX/Atmosphere/)
 - [Thog](https://github.com/Thog)
   - [oss-rtld](https://github.com/Thog/oss-rtld)
+------------------------------

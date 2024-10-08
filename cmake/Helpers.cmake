@@ -36,13 +36,13 @@ function(deploy_nso_ftp target title_id)
         set(FTP_PORT 5000 CACHE STRING "FTP Port")
         set(FTP_USERNAME anonymous CACHE STRING "FTP Username")
         set(FTP_PASSWORD anonymous CACHE STRING "FTP Password")
-        file(GLOB_RECURSE _FTP_FILES ${CMAKE_SOURCE_DIR}/deploy/${target}/*)
-        list(JOIN _FTP_FILES "," _FTP_FILES_JOINED)
+        #file(GLOB_RECURSE _FTP_FILES ${CMAKE_SOURCE_DIR}/deploy/${target}/*)
+        #list(JOIN _FTP_FILES "," _FTP_FILES_JOINED)
         add_custom_target(${target}_deploy_ftp ALL
                 DEPENDS ${target}_deploy
                 COMMAND ${CURL_LOCATION}
                     --ftp-create-dirs -T
-                    "{${_FTP_FILES_JOINED}}"
+                    "{${CMAKE_SOURCE_DIR}/deploy/${target}/subsdk9,${CMAKE_SOURCE_DIR}/deploy/${target}/main.npdm}"
                     ftp://${FTP_USERNAME}:${FTP_PASSWORD}@${FTP_IP}:${FTP_PORT}/atmosphere/contents/${title_id}/exefs/
         )
     else ()
