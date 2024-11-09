@@ -1,7 +1,10 @@
 #include <mallow/config.hpp>
+#include <mallow/logging/logSinks.hpp>
 #include <mallow/mallow.hpp>
 
 #include "ActorFactory/actorPatches.h"
+
+#define IS_EMU false
 
 static void setupLogging() {
     using namespace mallow::log::sink;
@@ -28,6 +31,10 @@ static void setupLogging() {
             mallow::log::logLine("The IP address is missing or invalid.");
         }
     }
+    #if IS_EMU
+        static DebugPrintSink debugPrintSink = DebugPrintSink();
+        addLogSink(&debugPrintSink);
+    #endif
 }
 
 using mallow::log::logLine;
