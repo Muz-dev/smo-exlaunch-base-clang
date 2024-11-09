@@ -26,6 +26,13 @@ function(deploy_nso target)
             COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_BINARY_DIR}/${target} ${CMAKE_SOURCE_DIR}/deploy/${target}/
             COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_BINARY_DIR}/${target}.npdm ${CMAKE_SOURCE_DIR}/deploy/${target}/main.npdm
     )
+    if (EMU_MOD_PATH)
+        add_custom_target(${target}_deploy_emu ALL
+            DEPENDS ${target}_nso ${target}_npdm
+            COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_BINARY_DIR}/${target} ${EMU_MOD_PATH}
+            COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_BINARY_DIR}/${target}.npdm ${EMU_MOD_PATH}/main.npdm
+        )
+    endif ()
 endfunction()
 
 function(deploy_nso_ftp target title_id)
