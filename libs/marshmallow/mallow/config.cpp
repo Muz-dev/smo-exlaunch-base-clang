@@ -18,6 +18,16 @@ namespace mallow::config {
         }
     };
 
+    void ConfigBase::read(const ArduinoJson::JsonObject& config){
+        enableLogger = config["logger"]["enable"] | false;
+        if(config["logger"]["ip"].is<const char*>())
+            loggerIP = config["logger"]["ip"];
+        else
+            loggerIP = nullptr;
+        loggerPort = config["logger"]["port"] | 3080;
+        tryReconnectLogger = config["logger"]["reconnect"] | false;
+    }
+
     static JsonAllocator allocator = {};
     static std::tuple<ArduinoJson::JsonDocument, u8*, bool> config =
         std::make_tuple(ArduinoJson::JsonDocument(&allocator), nullptr, false);
@@ -27,7 +37,7 @@ namespace mallow::config {
         return std::get<2>(config);
     }
 
-    ArduinoJson::JsonObject getConfig() {
+    ArduinoJson::JsonObject getConfigJson() {
         if (!isLoadedConfig()) {
             std::get<0>(config).to<ArduinoJson::JsonObject>();
         }
@@ -95,6 +105,29 @@ namespace mallow::config {
 
         return true;
     }
+
+    bool useDefaultConfig() {
+        auto& document = std::get<0>(config);
+        auto* data = defaultConfig;
+        auto error = ArduinoJson::deserializeJson(document, data);
+
+        if (error) {
+            log::logLine("Failed to deserialize default config");
+            std::get<2>(config) = false;
+            return false;
+        }
+        std::get<2>(config) = true;
+        return true;
+    }
+
+    bool readConfigToStruct() {
+        if(!isLoadedConfig() || !getConfig())
+            return false;
+        log::logLine("Readinh config to struct");
+        getConfig()->read(std::get<0>(config).as<ArduinoJson::JsonObject>());
+        return true;
+    }
+
     bool saveConfig() {
         nn::fs::FileHandle file;
         auto res = nn::fs::OpenFile(&file, path, nn::fs::OpenMode_Write);
