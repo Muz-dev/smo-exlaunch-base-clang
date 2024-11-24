@@ -26,6 +26,11 @@ namespace mallow::config {
     extern ConfigBase* getConfig();
     extern bool isEmu();
 
+    template<typename T>
+    T* getConfg(){
+        return reinterpret_cast<T*>(getConfig());
+    }
+
     // If loading fails once, it will not retry unless you pass true to this function.
     bool loadConfig(bool retry);
     bool saveConfig();
