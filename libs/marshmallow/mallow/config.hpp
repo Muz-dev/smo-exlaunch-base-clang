@@ -21,6 +21,7 @@ namespace mallow::config {
     };
 
     extern const char* path;
+    extern const char* pathEmu;
     extern const char* defaultConfig;
     extern Allocator* getAllocator();
     extern ConfigBase* getConfig();
@@ -30,6 +31,8 @@ namespace mallow::config {
     T* getConfg(){
         return reinterpret_cast<T*>(getConfig());
     }
+
+    const char* calcConfigPath();
 
     // If loading fails once, it will not retry unless you pass true to this function.
     bool loadConfig(bool retry);

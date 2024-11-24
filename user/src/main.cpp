@@ -1,4 +1,3 @@
-#include <mallow/config.hpp>
 #include <mallow/mallow.hpp>
 
 #include "ActorFactory/actorPatches.h"

@@ -1,8 +1,13 @@
 #include <mallow/mallow.hpp>
+#include <nn/fs.h>
+#include <nn/fs/fs_directories.h>
+#include <nn/fs/fs_types.h>
+
 #include "ModOptions.h"
 
 namespace mallow::config {
-    const char* path = "sd:/mallow.json";
+    const char* path = "sd:/atmosphere/contents/0100000000010000/mallow.json";
+    const char* pathEmu = "sd:/mallow.json";
     const char* defaultConfig = R"(
 {
     "myModOption": true,
@@ -24,6 +29,8 @@ namespace mallow::config {
         return &modConfig;
     }
     bool isEmu(){
-        return false;
+        nn::fs::DirectoryEntryType type;
+        nn::fs::GetEntryType(&type, "sd:/atmosphere/package3");
+        return type != nn::fs::DirectoryEntryType_File;
     }
 }
