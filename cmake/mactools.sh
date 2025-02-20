@@ -9,7 +9,7 @@ else
   rm "curl-macos-x86_64-dev-8.10.1.tar.xz"
   mv "curl-x86_64" "curl"
   mv "curl" "tools/curl"
-  cp -r "tools/curl/bin" "tools/curl/curl"
+  cp "tools/curl/bin/curl" "tools/curl/curl"
   
 fi
 
