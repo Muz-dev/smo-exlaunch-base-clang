@@ -11,7 +11,7 @@ Supporting clang directly allows better integration with IDEs via clangd and var
 This project does not depend on the devkitPro switch toolchain.
 
 ## Setup
-The only supported host platforms are Windows and Linux.
+The only supported host platforms are Windows, MacOS and Linux.
 
 Dependencies: [CMake](https://cmake.org/)(>=v3.21) and [Ninja](https://ninja-build.org/).  
 Both should be available from your package manager, be it `winget`, `apt`, `pacman` or anything else.
