@@ -8,7 +8,9 @@ else
   tar -xvf "curl-macos-x86_64-dev-8.10.1.tar.xz" 
   rm "curl-macos-x86_64-dev-8.10.1.tar.xz"
   mv "curl-x86_64" "curl"
-  mv "curl" "tools/curl"
+  mv "curl" "tools/curl_tmp"
+  cp "tools/curl_tmp/bin/curl" "tools/curl"
+  rm -r "tools/curl_tmp"
 fi
 
 if [ -d "tools/clang" ]; then
