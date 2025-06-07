@@ -60,9 +60,9 @@ set(FTP_TITLE_ID 0100000000010000 CACHE STRING "FTP Title ID")
 deploy_nso_ftp(subsdk9 ${FTP_TITLE_ID})
 
 set(INCLUDE_DIRS
- /home/larbe/Projects/smo-exlaunch-base-clang/tools/clang/bin/../lib/clang-runtimes/aarch64-none-elf/aarch64/include/c++/v1
- /home/larbe/Projects/smo-exlaunch-base-clang/tools/clang/lib/clang/17/include
- /home/larbe/Projects/smo-exlaunch-base-clang/tools/clang/bin/../lib/clang-runtimes/aarch64-none-elf/aarch64/include
+ ${CMAKE_SOURCE_DIR}/tools/clang/bin/../lib/clang-runtimes/aarch64-none-elf/aarch64/include/c++/v1
+ ${CMAKE_SOURCE_DIR}/tools/clang/lib/clang/17/include
+ ${CMAKE_SOURCE_DIR}/tools/clang/bin/../lib/clang-runtimes/aarch64-none-elf/aarch64/include
 )
 
 generate_clangd_file("${CMAKE_SOURCE_DIR}/.clangd" "${INCLUDE_DIRS}")
